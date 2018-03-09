@@ -1,1 +1,3 @@
-# WeChatSpider
+# 微信文章爬虫
+
+一款简单的微信文章爬虫，基于Python编写
