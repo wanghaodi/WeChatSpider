@@ -3,6 +3,31 @@ import urllib.request
 import time
 import urllib.error
 
+'''
+def use_proxy(proxy_addr, url):
+    headers = ("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 "
+                             "(KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 "
+                             "Core/1.63.4793.400 QQBrowser/10.0.702.400")
+    opener = urllib.request.build_opener()
+    opener.addheaders = [headers]
+    urllib.request.install_opener(opener)
+    try:
+        proxy = urllib.request.ProxyHandler({'http':proxy_addr})
+        opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)
+        urllib.request.install_opener(opener)
+        data = urllib.request.urlopen(url).read().decode('utf-8')
+        return data
+    except urllib.error.URLError as e:
+        if hasattr(e, "code"):
+            print(e.code)
+        if hasattr(e, "reason"):
+            print(e.reason)
+        time.sleep(10)
+    except Exception as e:
+        print("exception:" + str(e))
+        time.sleep(1)
+'''
+
 
 def downloader(url):
     headers = ("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 "
@@ -38,7 +63,7 @@ def getlisturl(key, pagestart, pageend):
             data2 = re.compile(listurlpat, re.S)
             result = data2.findall(data1)
             listurl.append(result)
-            print(listurl)
+            #print(listurl)
         print("共获取到" + str(len(listurl)) + "页")
         return listurl
     except urllib.error.URLError as e:
@@ -103,7 +128,7 @@ def getcontent(listurl):
 if __name__ == '__main__':
     listurl = list()
     key = str(input('请输入要查询的关键词：'))
-    #proxy = "110.73.31.131:8123"
+    #proxy = "115.223.209.169:9000"
     pagestart = 1
     pageend = int(input('请输入结束页码(每页保存10条内容)'))
     listurl = getlisturl(key, pagestart, pageend)
